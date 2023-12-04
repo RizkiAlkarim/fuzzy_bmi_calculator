@@ -19,16 +19,9 @@ function App() {
   // }, [form])
 
   const handleSubmit = (e) => {
-    axios({
-      method: "POST",
-      url: "http://localhost:5000/data",
-      headers : {
-        "Content-Type": "application/json"
-      },
-      data: {
+    axios.post('http://localhost:5000/data', {
         weight: form.weight,
         height: form.height
-      }
     })
     .then((response) => {
       console.log(response.data)
@@ -47,11 +40,6 @@ function App() {
       }
     })
 
-    setForm(({
-      weight: 0,
-      height: 0
-    }))
-
     e.preventDefault()
     handleDialog('open')
   }
@@ -69,7 +57,7 @@ function App() {
     if (param == 'open') dialog.style.display = 'flex'
   }
 
-  console.log(result)
+  console.log(form)
   return (
     <div className="flex items-center justify-center h-screen w-full bg-white">
       <div className='flex items-center justify-center bg-blue-400 h-screen w-2/3'>
@@ -81,7 +69,6 @@ function App() {
       </div>
       
       <div className='flex flex-col items-center justify-center h-screen bg-white gap-6 w-1/3'>
-
         <form className='flex flex-col items-center justify-center gap-4 w-1/2' action="submit">
           <div className='w-full'>
             <label className='text-blue-400 text-md' htmlFor="berat_badan">
@@ -97,12 +84,13 @@ function App() {
             <label className='text-blue-400 text-md' htmlFor="tinggi_badan">
               <span>Tinggi Badan</span>
             </label>
+            {console.log(form.height)}
             <input 
               onChange={handleChange}
               value= {form.height}
               className='px-4 py-5 outline-none rounded-md bg-slate-200 w-full [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none' type="number" name="height" id="height" placeholder='masukkan tinggi badan (cm)' min={0} max={200}/>
           </div>
-          <button onClick={handleSubmit} className='bg-blue-400 text-white font-md font-bold px-4 py-5 rounded-md w-full'>Hitung</button>
+          <button onClick={(e)=> handleSubmit(e)} className='bg-blue-400 text-white font-md font-bold px-4 py-5 rounded-md w-full'>Hitung</button>
         </form>
       </div>
 

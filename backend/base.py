@@ -8,12 +8,11 @@ CORS(app)
 
 @app.route("/data", methods=["GET", "POST"])
 def fuzzy_result():
-    data = request.json()
-    # return {"data": data}
+    data = request.get_json()
     berat = int(data["weight"])
     tinggi = int(data["height"])
-    # tinggi = request.json.get["height"]
     result = fuzzy.calculate_fuzzy_bmi(berat, tinggi)
+    print(result)
     return {
         "berat": berat,
         "tinggi": tinggi,
