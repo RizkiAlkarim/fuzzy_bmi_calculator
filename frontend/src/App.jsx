@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useState } from 'react'
 import axios from 'axios'
 import './App.css'
@@ -25,6 +24,7 @@ function App() {
         tinggi: response.data.tinggi,
         BMI: response.data.BMI,
       }))
+      handleDialog('open')
     })
     .catch((error) => {
       if(error.response){
@@ -37,10 +37,9 @@ function App() {
     setForm(({
       weight: '',
       height: ''
-    }))
-
+      }))
     e.preventDefault()
-    handleDialog('open')
+
   }
 
   const handleChange = (e) => {
@@ -86,7 +85,7 @@ function App() {
               value= {form.height}
               className='px-4 py-5 outline-none rounded-md bg-slate-300 w-full [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none' type="number" name="height" id="height" placeholder='masukkan tinggi badan (cm)' min={0} max={200}/>
           </div>
-          <button onClick={(e)=> handleSubmit(e)} className='bg-blue-400 text-white font-md font-bold px-4 py-5 rounded-md w-full'>Hitung</button>
+          <button onClick={(e)=> handleSubmit(e)} disabled={!form.weight || !form.height} className='bg-blue-400 text-white font-md font-bold px-4 py-5 rounded-md w-full disabled:bg-slate-600'>Hitung</button>
         </form>
       </div>
 

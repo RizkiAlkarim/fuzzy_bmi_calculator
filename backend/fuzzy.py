@@ -3,8 +3,8 @@ def calculate_fuzzy_bmi(berat_badan, tinggi_badan):
     tinggi_badan = int(tinggi_badan)
     input_data = [berat_badan, tinggi_badan]
 
-    nilai_tinggi = [0, 0, 0]
     nilai_berat = [0, 0, 0]
+    nilai_tinggi = [0, 0, 0]
     z = 0
     ringan = normal = berat = rendah = sedang = tinggi = 0
 

@@ -1,18 +1,17 @@
 import fuzzy
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__, "/frontend/dist")
 CORS(app)
 
 
-@app.route("/data", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def fuzzy_result():
     data = request.get_json()
-    berat = int(data["weight"])
-    tinggi = int(data["height"])
+    berat = data["weight"]
+    tinggi = data["height"]
     result = fuzzy.calculate_fuzzy_bmi(berat, tinggi)
-    print(result)
     return {
         "berat": berat,
         "tinggi": tinggi,
