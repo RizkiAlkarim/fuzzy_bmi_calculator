@@ -13,7 +13,7 @@ function App() {
     BMI: 0
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     axios.post('http://localhost:5000', {
         weight: form.weight,
         height: form.height
@@ -38,8 +38,6 @@ function App() {
       weight: '',
       height: ''
       }))
-    e.preventDefault()
-
   }
 
   const handleChange = (e) => {
